@@ -1,0 +1,8 @@
+LIBGST_INC=$(shell pkg-config --cflags --libs gstreamer-1.0)
+CFLAGS = -Wall 
+CFLAGS += $(LIBGST_INC)
+version:	
+	gcc -Wall version.c -o version -Wall $(CFLAGS)
+clean: 		
+	rm -rf *.o 
+	rm -rf version

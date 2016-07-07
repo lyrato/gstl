@@ -1,4 +1,4 @@
-LIBGST_INC=$(shell pkg-config --cflags --libs gstreamer-1.0)
+LIBGST_INC=$(shell pkg-config --cflags --libs gstreamer-0.11)
 CFLAGS = -Wall 
 CFLAGS += $(LIBGST_INC)
 version:	

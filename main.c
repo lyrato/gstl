@@ -49,7 +49,9 @@ int main(int argc,char *argv[])
     printf("\n%s %d %x\n",__FUNCTION__,__LINE__,decoder);
     decoder = gst_element_factory_make("mad","mad-decoder");  
     sink = gst_element_factory_make("autoaudiosink","audio-output");  
+    printf("\n%s %d %x\n",__FUNCTION__,__LINE__,source);
     printf("\n%s %d %x\n",__FUNCTION__,__LINE__,decoder);
+    printf("\n%s %d %x\n",__FUNCTION__,__LINE__,sink);
     if(!pipeline||!source||!decoder||!sink){  
         g_printerr("One element could not be created.Exiting.\n");  
         return -1;  

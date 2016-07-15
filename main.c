@@ -1,6 +1,6 @@
 #include <gst/gst.h>  
 #include <glib.h>  
-#include <libmpdemux/demuxer.h>
+
 //定义消息处理函数,  
 static gboolean bus_call(GstBus *bus,GstMessage *msg,gpointer data)  
 {  
@@ -28,68 +28,13 @@ static gboolean bus_call(GstBus *bus,GstMessage *msg,gpointer data)
     }  
     return TRUE;  
 }  
-double video_time_usage;
-double vout_time_usage;
-static double audio_time_usage;
-static int total_time_usage_start;
-static int total_frame_cnt;
-static int drop_frame_cnt; // total number of dropped frames
-int benchmark;
-int enable_mouse_movements;
-int audio_id  = -1;
-int video_id  = -1;
-int dvdsub_id = -1;
-// this dvdsub_id was selected via slang
-// use this to allow dvdnav to follow -slang across stream resets,
-// in particular the subtitle ID for a language changes
-int dvdsub_lang_id;
-int vobsub_id = -1;
-char *audio_lang;
-char *dvdsub_lang;
-char *filename;
-int file_filter = 1;
 
-// sub:
-char *font_name;
-char *sub_font_name;
-float font_factor = 0.75;
-char **sub_name;
-char **sub_paths;
-float sub_delay;
-float sub_fps;
-int sub_auto = 1;
-char *vobsub_name;
-int subcc_enabled;
-int suboverlap_enabled = 1;
-char *current_module; // for debugging
-int stream_cache_size = -1;
-
-float stream_cache_min_percent      = 1.0;
-float stream_cache_seek_min_percent = 10.0;
-double force_fps=0;
-
-void exit_player(int how)
-{
-   
-}
-void set_osd_subtitle(subtitle *subs)
-{
-	}
 int main(int argc,char *argv[])  
 {  
     GMainLoop *loop;  
     GstElement *pipeline,*source,*decoder,*sink;//定义组件  
     GstBus *bus;  
-    #if 1
-    {
-    int file_format = 0;
-     stream_t * p_stream = NULL;
-     void * p_demuxer;
-    p_stream =   open_stream(NULL, 0, &file_format);
-    //p_demuxer = demux_mp_open((stream_t *)(p_stream), file_format, -1, -1, -1, NULL);
-		}
-    
-    #endif
+
     gst_init(&argc,&argv);  
     loop = g_main_loop_new(NULL,FALSE);//创建主循环，在执行 g_main_loop_run后正式开始循环  
   

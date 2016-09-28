@@ -1,4 +1,4 @@
-LIBGST_INC=$(shell pkg-config --cflags --libs gstreamer-0.10 )
+LIBGST_INC=$(shell pkg-config --cflags --libs gstreamer-1.0 )
 MINC = -I /opt/MPlayer-1.1.1
 MLIB = /opt/MPlayer-1.1.1 
 MLIBAVFORMATE =/opt/MPlayer-1.1.1/ffmpeg/libavformat

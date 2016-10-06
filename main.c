@@ -50,6 +50,7 @@ static gboolean handle_keyboard(GIOChannel * source, GIOCondition cond, GstEleme
         }
 
         cnt = 1 - cnt;
+        break;
     }
     case 's': {
         printf("\n%s %d\n", __FUNCTION__, __LINE__);
@@ -58,11 +59,11 @@ static gboolean handle_keyboard(GIOChannel * source, GIOCondition cond, GstEleme
         event = gst_event_new_seek (1.0,
                                     GST_FORMAT_TIME,
                                     GST_SEEK_FLAG_FLUSH,
-                                    GST_SEEK_TYPE_SET, 100 * GST_SECOND,
+                                    GST_SEEK_TYPE_SET, 50 * GST_SECOND,
                                     GST_SEEK_TYPE_NONE, 0* GST_SECOND);
 
         gst_element_send_event (play, event);
-
+        break;
 
     }
     }

@@ -66,6 +66,40 @@ static gboolean handle_keyboard(GIOChannel * source, GIOCondition cond, GstEleme
         break;
 
     }
+        case 'f': {
+        
+        GstEvent *event;
+        static double frate = 1;
+   
+        frate*=2;
+        if(frate-32.f>0)
+        frate = 1;
+        printf("\n%s %d rate :%f\n", __FUNCTION__, __LINE__,frate);
+   
+        event = gst_event_new_seek (frate, 
+        GST_FORMAT_TIME, GST_SEEK_FLAG_FLUSH , GST_SEEK_TYPE_NONE, 0, GST_SEEK_TYPE_SET, -1);   
+
+        gst_element_send_event (play, event);
+        break;
+
+    }
+      case 'b': {
+        
+        GstEvent *event;
+        static double brate = 1;
+  
+        brate*=2;
+        if(brate-32.f>0)
+        brate = 1;
+        
+        printf("\n%s %d rate :%f\n", __FUNCTION__, __LINE__,brate);
+        event = gst_event_new_seek (-brate, 
+        GST_FORMAT_TIME, GST_SEEK_FLAG_FLUSH ,GST_SEEK_TYPE_SET, 0, GST_SEEK_TYPE_NONE, 0);
+
+        gst_element_send_event (play, event);
+        break;
+
+    }
     }
 
     return TRUE;

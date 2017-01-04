@@ -29,6 +29,7 @@ static gboolean bus_call(GstBus * bus, GstMessage * msg, gpointer data)
     return TRUE;
 }
 static int cnt = 1 ;
+static GMainLoop * loop;
 static gboolean handle_keyboard(GIOChannel * source, GIOCondition cond, GstElement * play)
 {
     gchar * str = NULL;
@@ -50,6 +51,12 @@ static gboolean handle_keyboard(GIOChannel * source, GIOCondition cond, GstEleme
         }
 
         cnt = 1 - cnt;
+        break;
+    }
+	case 'q': {
+        printf("\n%s %d\n", __FUNCTION__, __LINE__);
+        gst_element_set_state (play, GST_STATE_NULL);  
+        g_main_loop_quit (loop);  
         break;
     }
     case 's': {
@@ -109,7 +116,7 @@ gint
 main(gint   argc,
      gchar * argv[])
 {
-    GMainLoop * loop;
+    
     GstElement * play;
     GstBus * bus;
     GIOChannel * io_stdin;
